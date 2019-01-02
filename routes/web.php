@@ -23,5 +23,8 @@ Route::group(['prefix' => 'kategori'], function()
 {
     Route::get('/', 'KategoryController@index');
     Route::get('/new', 'KategoryController@create');
-    Route::post('/', 'KategoryController@save');
+    Route::post('/', 'KategoryController@save');    
+    Route::get('/{id}', 'KategoryController@edit');
+    Route::put('/{id}', 'KategoryController@update');
+    Route::delete('/{id}', 'KategoryController@delete');
 });
