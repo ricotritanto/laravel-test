@@ -11,7 +11,7 @@
                                 <h3 class="card-title">Manajemen Produk</h3>
                             </div>
                             <div class="col-md-6">
-                                <a href="{{ url('/kategori/new') }}" class="btn btn-primary btn-sm float-right">Tambah Data</a>
+                                <a href="{{ url('/produks/new') }}" class="btn btn-primary btn-sm float-right">Tambah Data</a>
                             </div>
                         </div>
                     </div>
@@ -25,23 +25,29 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Kategori</th>
+                                    <th>Kode Produk</th>
+                                    <th>Kategori</th>
+                                    <th>Produks</th>
+                                    <th>Deskripsi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php ($no =1)
-                                @forelse($kategoris as $kategori)                               
+                                @forelse($produks as $produk)                               
                                 <tr>
                                     <td>{{ $no++}}</td>
-                                    <td>{{ $kategori->name }}</td>
+                                    <td>{{ $produk->kode }}</td>
+                                    <td>{{ $produk->kategori->name }}</td>
+                                    <td>{{ $produk->name }}</td>
+                                    <td>{{ $produk->description }}</td>
                                     <!-- TOMBOL DELETE MENGGUNAKAN METHOD DELETE DALAM ROUTING SEHINGGA KITA MEMASUKKAN TOMBOL TERSEBUT KEDALAM TAG <FORM></FORM> -->
                                     <td>
-                                        <form action="{{ url('/kategori/' . $kategori->id) }}" method="POST">
+                                        <form action="{{ url('/produk/' . $produk->id) }}" method="POST">
                                             <!-- @csrf ADALAH DIRECTIVE UNTUK MEN-GENERATE TOKEN CSRF -->
                                             @csrf
                                             <input type="hidden" name="_method" value="DELETE" class="form-control">
-                                            <a href="{{ url('/kategori/' . $kategori->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="{{ url('/produk/' . $produk->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                             <button class="btn btn-danger btn-sm">Hapus</button>
                                         </form>
                                     </td>
