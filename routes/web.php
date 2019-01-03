@@ -29,3 +29,10 @@ Route::group(['prefix' => 'kategori'], function()
     Route::put('/{id}', 'KategoryController@update');
     Route::delete('/{id}', 'KategoryController@delete');
 });
+
+Route::group(['prefix' => 'produks'], function()
+{
+	Route::get('/', 'ProdukController@index');
+    Route::get('/new', 'ProdukController@create');
+
+});

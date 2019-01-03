@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -33,7 +32,7 @@ class KategoryController extends Controller
 	   // function createCategory($name)
     //    	{
         $kategoris = $kategoryRepo->createCategory($name);
-        if($kategoris) return redirect('/kategori')->with(['success' => '<strong>' . $kategoris->name . '</strong> Telah diupdate']);
+        if($kategoris) return redirect('/kategori')->with(['success' => '<strong>' . $kategoris->name . '</strong> Telah disimpan']);
         else return redirect('/kategori/new')->with(['error' => $e->getMessage()]); 
         // }
        
@@ -53,7 +52,7 @@ class KategoryController extends Controller
         $name = $aa['name'];
         $kategoryRepo=new KategoriRepository;
         $kategoris = $kategoryRepo->UpdateCategory($id, $name);
-        if($kategoris) return redirect('/kategori')->with(['success' => '<strong>' . $name . '</strong> Telah disimpan']);
+        if($kategoris) return redirect('/kategori')->with(['success' => '<strong>' . $name . '</strong> Telah diupdate']);
         else return redirect('/kategori')->with(['error' => $e->getMessage()]); 
         // }
     }

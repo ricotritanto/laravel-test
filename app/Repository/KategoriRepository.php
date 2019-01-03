@@ -7,7 +7,7 @@ use App\Model\transaction;
 class KategoriRepository{
 
     Public Function GetCategoryList(){
-        return kategori::orderBy('created_at', 'DESC')->get(); // 2 
+        return kategori::orderBy('name', 'ASC')->get(); // 2 
     }
 
     Public Function GetTransactionList(){

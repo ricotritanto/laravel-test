@@ -17,7 +17,8 @@ class CreateProduksTable extends Migration
             $table->increments('id');
             $table->string('kode')->unique();
             $table->string('name');
-            $table->text('description');
+            $table->string('description')->nullable();
+            $table->integer('id_kategori');
             $table->timestamps();
         });
     }
