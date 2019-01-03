@@ -34,8 +34,8 @@ Route::group(['prefix' => 'produks'], function()
 {
 	Route::get('/', 'ProdukController@index');
     Route::get('/new', 'ProdukController@create');
-    Route::post('/', 'KategoryController@save');    
-    Route::get('/{id}', 'KategoryController@edit');
-    Route::put('/{id}', 'KategoryController@update');
-    Route::delete('/{id}', 'KategoryController@delete');
+    Route::post('/', 'ProdukController@save');    
+    Route::get('/{id}', 'ProdukController@edit');
+    Route::put('/{id}', 'ProdukController@update');
+    Route::delete('/{id}', 'ProdukController@delete');
 });

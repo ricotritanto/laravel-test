@@ -29,10 +29,10 @@ class AddRelationshipsToProduksTable extends Migration
     public function down()
     {
         Schema::table('produks', function (Blueprint $table) {
-            $table->dropForeign('producks_id_kategori_foreign');
+            $table->dropForeign('produks_id_kategori_foreign');
         });
          Schema::table('produks', function(Blueprint $table) {
-        $table->dropIndex('products_id_kategori_foreign');
+        $table->dropIndex('produks_id_kategori_foreign');
     });
           Schema::table('produks', function(Blueprint $table) {
         $table->integer('id_kategori')->change();

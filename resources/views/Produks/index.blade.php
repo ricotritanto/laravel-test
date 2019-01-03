@@ -38,7 +38,7 @@
                                 <tr>
                                     <td>{{ $no++}}</td>
                                     <td>{{ $produk->kode }}</td>
-                                    <td>{{ $produk->kategori->name }}</td>
+                                    <td>{{ $produk->id_kategori }}</td>
                                     <td>{{ $produk->name }}</td>
                                     <td>{{ $produk->description }}</td>
                                     <!-- TOMBOL DELETE MENGGUNAKAN METHOD DELETE DALAM ROUTING SEHINGGA KITA MEMASUKKAN TOMBOL TERSEBUT KEDALAM TAG <FORM></FORM> -->

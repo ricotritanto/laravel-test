@@ -11,7 +11,7 @@ class Produks extends Model
 
     public function kategoris()
     {
-    	return $this->belongsTo(Kategori::class);
+    	return $this->BelongsTo(Kategori::class);
     }
 }
 

@@ -8,7 +8,7 @@ use App\Model\transaction;
 class ProdukRepository{
 
     Public Function GetProdukList(){
-        return produks::with('kategoris')->orderBy('created_at', 'DESC')->paginate(10); // 2 
+        return produks::with('kategoris')->orderBy('created_at', 'DESC')->get(); // 2 
         // $products = Product::with('category')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
@@ -16,8 +16,12 @@ class ProdukRepository{
         return produks::orderBy('created_at', 'DESC')->with('detail')->get(); // 2 
     }
 
-    Public Function CreateProduk($name){
-         return produks::create(['name_produk'=>$name]);
+    Public Function CreateProduk($name,  $kode, $kategori, $desc)
+    {
+         return produks::create(['name'=>$name,
+                                 'kode'=>$kode,
+                                 'id_kategori'=>$kategori,
+                                 'description'=>$desc]);
     }
 
     Public Function UpdateProduk($id, $name)
