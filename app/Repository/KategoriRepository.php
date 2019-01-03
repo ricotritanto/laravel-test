@@ -8,8 +8,6 @@ class KategoriRepository{
 
     Public Function GetCategoryList(){
         return kategori::orderBy('name', 'ASC')->get(); // 2 
-        return kategori::orderBy('created_at', 'DESC')->get(); // 2 
-
     }
 
     Public Function GetTransactionList(){
@@ -23,11 +21,8 @@ class KategoriRepository{
     Public Function UpdateCategory($id, $name)
     {
         return kategori::Where('id', $id)->update(['name'=>$name]);
-    } 
-        return kategori::create(['name'=>$name]);  
-       
+    }        
         
-    }
     Public Function GetCategoryId($id)
     {
         return kategori::find($id);
