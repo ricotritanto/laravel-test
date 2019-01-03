@@ -9,5 +9,6 @@ class kategori extends Model
     //
     // protected $guarded = [];
     protected $fillable = ['id', 'name', 'created_at', 'updated_at'];
-    protected $table = 'kategori';
+    protected $table = 'kategoris';
+    public $timestamps = true;
 }

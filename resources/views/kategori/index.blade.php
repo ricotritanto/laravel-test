@@ -24,13 +24,16 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama Kategori</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($kategoris as $kategori)
+                                @php ($no =1)
+                                @forelse($kategoris as $kategori)                               
                                 <tr>
+                                    <td>{{ $no++}}</td>
                                     <td>{{ $kategori->name }}</td>
                                     <!-- TOMBOL DELETE MENGGUNAKAN METHOD DELETE DALAM ROUTING SEHINGGA KITA MEMASUKKAN TOMBOL TERSEBUT KEDALAM TAG <FORM></FORM> -->
                                     <td>
