@@ -23,6 +23,7 @@ Route::group(['prefix' => 'kategori'], function()
 {
     Route::get('/', 'KategoryController@index');
     Route::get('/new', 'KategoryController@create');
+<<<<<<< HEAD
     // Route::get('/create', 'KategoryController@createCategory');
     Route::post('/', 'KategoryController@save');
     Route::get('/{id}', 'KategoryController@edit');
@@ -35,4 +36,10 @@ Route::group(['prefix' => 'produks'], function()
 	Route::get('/', 'ProdukController@index');
     Route::get('/new', 'ProdukController@create');
 
+=======
+    Route::post('/', 'KategoryController@save');    
+    Route::get('/{id}', 'KategoryController@edit');
+    Route::put('/{id}', 'KategoryController@update');
+    Route::delete('/{id}', 'KategoryController@delete');
+>>>>>>> 64e885030f4366604f26dedba683a190b10c6d40
 });

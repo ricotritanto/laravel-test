@@ -40,6 +40,7 @@ class KategoryController extends Controller
 
     //fungsi update kategori
     Public Function Edit($id)
+<<<<<<< HEAD
     {
     	$kategoryRepo=new KategoriRepository;
     	$kategoris = $kategoryRepo->getCategoryId($id);
@@ -62,6 +63,26 @@ class KategoryController extends Controller
     	$kategoryRepo=new KategoriRepository;
     	$kategoris = $kategoryRepo->DeleteCategory($id);
     	if($kategoris) return redirect('/kategori')->with(['success' =>  'Data Berhasil dihapus']);
+=======
+    {
+    	$kategoryRepo=new KategoriRepository;
+    	$kategoris = $kategoryRepo->getCategoryId($id);
+    	return view('kategori.edit', compact('kategoris'));
+    }
+
+    Public Function Update($id)
+    {
+
+    }
+
+    Public Function Delete($id)
+    {
+    	$kategoryRepo=new KategoriRepository;
+    	$kategoris = $kategoryRepo->DeleteCategory($id);
+        
+        print_r($kategoris);exit();
+    	if($kategoris) return redirect('/kategori')->with(['success' => '<strong>' . $kategoris->name . '</strong> Telah disimpan']);
+>>>>>>> 64e885030f4366604f26dedba683a190b10c6d40
         else return redirect('/kategori/new')->with(['error' => $e->getMessage()]); 
         // ->with(['success' => '</strong>' . $kategori->name . '</strong> Dihapus']); //
     }
