@@ -50,6 +50,10 @@
           <a href="{{ url('/transaction') }}">
             <i class="fa fa-folder"></i> <span>Transaction</span></a>
         </li>
+         <li>
+          <a href="{{ url('/transaction') }}">
+            <i class="fa fa-folder"></i> <span>Menu Jembut</span></a>
+        </li>
         <!-- <li>
           <a href="{{ url('/transaction/keluar') }}">
             <i class="fa fa-folder"></i> <span>Transaction Keluar</span></a>
