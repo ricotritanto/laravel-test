@@ -60,7 +60,7 @@
         </li>
          <li>
           <a href="{{ url('/transaction') }}">
-            <i class="fa fa-folder"></i> <span>Menu Jembut3</span></a>
+            <i class="fa fa-folder"></i> <span>Menu Jembut kkk</span></a>
         </li>
         <!-- <li>
           <a href="{{ url('/transaction/keluar') }}">
