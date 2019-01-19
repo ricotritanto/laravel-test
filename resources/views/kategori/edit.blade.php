@@ -1,38 +1,43 @@
-@extends('layouts.app')
+@extends('admin')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Edit Data Kategori</h3>
-                    </div>
-                    <div class="card-body">
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-						
-                        <!-- ACTION MENGARAH KE /product/id -->
-                        <form action="{{ url('/kategori/' . $kategoris->id) }}" method="post">
-                            @csrf
-                            <!-- KARENA METHOD YANG AKAN DIGUNAKAN ADALAH PUT -->
-                            <!-- MAKA KITA PERLU MENGIRIMKAN PARAMETER DENGAN NAME _method -->
-                            <!-- DAN VALUE PUT -->
-                            <input type="hidden" name="_method" value="PUT" class="form-control">
-                            <div class="form-group">
-                                <label for="">Nama Kategori</label>
-                                <input type="text" name="name" class="form-control" value="{{ $kategoris->name }}" placeholder="Masukkan nama katefori">
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary btn-sm">Update</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+<section class="content">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+                 <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Form Category</h3>
             </div>
-        </div>
-    </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+             @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            <form class="form-horizontal" action="{{ url('/kategori/' . $kategoris->id) }}" method="post">
+                @csrf
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="" class="col-sm-2 control-label">Category</label>
+                  <input type="hidden" name="_method" value="PUT" class="form-control">
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="name" value="{{ $kategoris->name }}">
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-info pull-right">Update</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+      </div>
+  </div>
+</section>
 @endsection
+
+
