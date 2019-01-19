@@ -35,5 +35,35 @@ class ProdukController extends Controller
         if($produks) return redirect('/produks')->with(['success' => '<strong>' . $produks->name . '</strong> Telah disimpan']);
         else return redirect('/produk/new')->with(['error' => $e->getMessage()]); 
     }
+
+    Public Function Edit($id)
+    {
+        $produkRepo=new ProdukRepository;
+        $kategoryRepo=new KategoriRepository;
+        $produks = $produkRepo->GetProdukId($id);
+        $kategoris = $kategoryRepo->getCategoryList();
+        return view('produks.edit', compact('produks','kategoris'));
+    }
+
+    Public Function Update(Request $request, $id)
+    {
+        $this->validate($request, [
+        'kode' => 'required|string|max:10',
+        'name' => 'required|string|max:100',
+        'description' => 'nullable|string|max:255',
+        'id_kategori' => 'required'
+        ]);
+        $produkRepo=new ProdukRepository;
+        $produks = $produkRepo->UpdateProduk($id, $request);
+        if($produks) return redirect('/produks')->with(['success' => '<strong>' . 'Data' . '</strong> berhasil diupdate']);
+        else return redirect('/produks')->with(['error' => $e->getMessage()]); 
+    }
+
+    Public Function Delete($id)
+    {
+        $produkRepo=new ProdukRepository;
+        $produks = $produkRepo->DeleteProduk($id);
+        if($produks) return redirect('/produks')->with(['success' =>  'Data Berhasil dihapus']);
+    }
 }
 	
