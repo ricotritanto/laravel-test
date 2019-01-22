@@ -28,12 +28,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="" class="col-sm-2 control-label">Products</label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" name="name" value="{{ $produks->name }}">
-                  </div>
-                </div>
-                <div class="form-group">
                   <label  class="col-sm-2 control-label">Category</label>
                     <div class="col-sm-6">
                         <select name="id_kategori" id="id_kategori" class="form-control" required>
@@ -45,6 +39,12 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
+                <div class="form-group">
+                  <label for="" class="col-sm-2 control-label">Products</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" name="name" value="{{ $produks->name }}">
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="" class="col-sm-2 control-label">Description</label>

@@ -27,12 +27,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="" class="col-sm-2 control-label">Product</label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" name="name" placeholder="Enter Product">
-                  </div>
-                </div>
-                <div class="form-group">
                   <label  class="col-sm-2 control-label">Category</label>
                     <div class="col-sm-6">
                         <select name="id_kategori" id="id_kategori" class="form-control" required>
@@ -44,6 +38,12 @@
                      <p class="text-danger">{{ $errors->first('id_kategori') }}</p>
                     </div>
                 </div>
+                <div class="form-group">
+                  <label for="" class="col-sm-2 control-label">Product</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" name="name" placeholder="Enter Product">
+                  </div>
+                </div>                
                 <div class="form-group">
                   <label for="" class="col-sm-2 control-label">Description</label>
                   <div class="col-sm-6">
