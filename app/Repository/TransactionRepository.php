@@ -5,6 +5,7 @@ use App\Model\produks;
 use App\Model\kategori;
 use App\Model\transaction_detail;
 use App\Model\transaction;
+use App\Model\transaction_status;
 
 class TransactionRepository{
 
