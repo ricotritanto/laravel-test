@@ -64,7 +64,7 @@ class TransactionController extends Controller
         
         $transactionRepo=new TransactionRepository;
         $produks = $transactionRepo->createtransaction($data,$status);
-        return view('transaction.index', compact('produks'));
+        return redirect('transaction');
     }
 
     function viewtransaction()
