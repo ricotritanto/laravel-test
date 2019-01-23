@@ -19,12 +19,6 @@
             <div class="box-header">
               <h3 class="box-title">Form Transaction</h3>
             </div>
-            <div class="col-md-6">
-                <a href="{{ url('/transaction/new') }}" class="btn btn-primary btn-sm float-right">DATA MASUK</a>
-            </div>
-            <div class="col-md-8">
-                <a href="{{ url('/transaction/ext') }}" class="btn btn-primary btn-sm float-right">DATA KELUAR</a>
-            </div>
             <!-- /.box-header -->
             <div class="box-body">
                  @if (session('success'))

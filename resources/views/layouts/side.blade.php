@@ -46,18 +46,18 @@
             </span>
           </a>
         </li>
-        <li>
+        <li class="treeview">
           <a href="{{ url('/transaction') }}">
-            <i class="fa fa-folder"></i> <span>Transaction</span></a>
+            <i class="fa fa-folder"></i> <span>Transaction</span>
+             <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+              <li><a href="{{ url('/transaction/new') }}"><i class="fa fa-circle-o"></i> Incoming Transaction</a></li>
+              <li><a href="{{ url('/transaction/ext') }}"><i class="fa fa-circle-o"></i> Outgoing Transaction</a></li>
+          </ul>
         </li>
-         <li>
-          <a href="{{ url('/transaction') }}">
-            <i class="fa fa-folder"></i> <span>Menu Jembut</span></a>
-        </li>
-        <!-- <li>
-          <a href="{{ url('/transaction/keluar') }}">
-            <i class="fa fa-folder"></i> <span>Transaction Keluar</span></a>
-        </li> -->
       </ul>
     </section>
     <!-- /.sidebar -->
