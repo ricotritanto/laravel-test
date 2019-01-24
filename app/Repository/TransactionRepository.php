@@ -5,11 +5,14 @@ use App\Model\produks;
 use App\Model\kategori;
 use App\Model\transaction_detail;
 use App\Model\transaction;
+use App\Model\transaction_status;
 
 class TransactionRepository{
 
     Public Function GetTransactionList(){
-        return transaction_detail::with('produks')->with('produks.kategoris')->orderBy('created_at', 'DESC')->get(); 
+        // return transaction_detail::with('produks')->with('produks.kategoris')->orderBy('created_at', 'DESC')->get(); 
+      // return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction')->with('transaction.transaction_details')->with('transaction_status')->with('transaction.transaction_details')->orderBy('created_at', 'DESC')->get();
+      return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('created_at', 'DESC')->get();
     }
 
     Public Function createtransaction($data,$status)
