@@ -34,8 +34,8 @@
                     <th>Code Products</th>
                     <th>Category</th>
                     <th>Products</th>
-                    <th>Qty</th>
-                    <th>Status</th>
+                    <th>Masuk</th>
+                    <th>Keluar</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,11 +45,18 @@
                         <td>{{ $no++}}</td>
                         <td>{{ $abc->produks->kode }}</td>                                  
                         <td>{{ $abc->produks->kategoris->name }}</td>                                  
-                        <td>{{ $abc->produks->name }}</td>
-                        <td>{{ $abc->qty }}</td>
-                        <!-- <td>{{ $abc->status }}</td> -->
-                        @foreach ($abc->transaction as $aa)
-                            <td>{{ $aa->transaction_status->status }} </td>
+                        <td>{{ $abc->produks->name }}</td>       
+                        @forelse ($abc->transaction as $aa)
+                          <td align="center">
+                            @if($aa->transaction_status->id==1)
+                              {{ $abc->qty }}
+                            @endif
+                          </td>
+                            @if($aa->transaction_status->id==2)
+                              <td bgcolor="yellow" align="center">
+                                {{ $abc->qty }}
+                              </td>                              
+                            @endif
                         @endforeach
                     </tr>
                     @empty
