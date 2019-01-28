@@ -27,14 +27,14 @@ class AddRelationshipsToTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('transactions', function (Blueprint $table) {
-            $table->dropForeign('transactions_transaction_status_id_foreign');
-        });
-        Schema::table('transactions', function(Blueprint $table) {
-            $table->dropIndex('transactions_transaction_status_id_foreign');
-        });
-        Schema::table('transactions', function(Blueprint $table) {
-            $table->integer('transaction_status_id')->change();
-        });
+        // Schema::table('transactions', function (Blueprint $table) {
+        //     $table->dropForeign('transactions_transaction_status_id_foreign');
+        // });
+        // Schema::table('transactions', function(Blueprint $table) {
+        //     $table->dropIndex('transactions_transaction_status_id_foreign');
+        // });
+        // Schema::table('transactions', function(Blueprint $table) {
+        //     $table->integer('transaction_status_id')->change();
+        // });
     }
 }

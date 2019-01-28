@@ -10,14 +10,14 @@ class transaction extends Model
 {
 	protected $guarded = [];
 
-    public function detail()
+    public function transaction_details()
     {
-        return $this->hasMany(transaction_detail::class, 'transaction_id', 'id');
+        return $this->belongsTo(transaction_detail::class, 'transaction_id', 'id');
     }
 
-    public function status()
+    public function transaction_status()
     {
-    	return $this->hasOne(transaction_status::class, 'id','status');
+    	return $this->belongsTo(transaction_status::class, 'transaction_status_id','id');
     }
    
 }

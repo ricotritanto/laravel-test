@@ -89,9 +89,13 @@
                 success: function(jancok, textStatus, jqXHR){
                   // jancok=JSON.parse(jancok)
                   // console.log(jancok);
+                   if (jancok.kode === undefined) {
+                        alert('Maaf kode Tidak Ada')
+                       }else{
                     $("#isinetabel").empty();
                     $("#isinetabel").append("<tr><td  class='idpro' name='idpro'><label>produk</label><input type='hidden' name='idpro' id='idpro' class='form-control' readonly value='"+jancok.id+"'><input type='text' name='produk' id='name' class='form-control' readonly value='"+jancok.name+"'></td><td><label>Qty </label> <input type='text' class='form-control' name='qty' id='qty'></td></tr>")
                     // $("#isinetabel").append("<tr><td  class='name'> Produks: <input type='hidden' class='name' id='name' readonly class='form-control' value='"+jancok.name+"'></td><td class='qty'>QTY : <input type='text'id='qty'  class='form-control'></td></tr>")
+                  }
                 },error: function (jqXHR, textStatus, errorThrown){
                     console.log("error: "+errorThrown);
                 }
