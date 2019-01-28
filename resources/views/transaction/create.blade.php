@@ -88,10 +88,15 @@
                 processData: false,
                 success: function(jancok, textStatus, jqXHR){
                   // jancok=JSON.parse(jancok)
-                  // ?console.log(jancok);lert('asu')                      
+                  // console.log(data);    
+                       if (jancok.kode === undefined) {
+                        alert('Maaf kode Tidak Ada')
+                       }else{
+
+
                       $("#isinetabel").empty();
                       $("#isinetabel").append("<tr><td  class='idpro' name='idpro'><label>produk</label><input type='hidden' name='idpro' id='idpro' class='form-control' readonly value='"+jancok.id+"'><input type='text' name='produk' id='name' class='form-control' readonly value='"+jancok.name+"'></td><td><label>Qty </label> <input type='text' class='form-control' name='qty' id='qty'></td></tr>")
-                  
+                  }
                 },error: function (jqXHR, textStatus, errorThrown){
                     console.log("error: "+errorThrown);
                 }
