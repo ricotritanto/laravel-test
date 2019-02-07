@@ -40,22 +40,33 @@
         </li>
         <li>
           <a href="{{ url('/produks') }}">
-            <i class="fa fa-th"></i> <span>Product</span>
+            <i class="fa fa-desktop"></i> <span>Product</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
             </span>
           </a>
         </li>
+        <li>
+          <a href="{{ url('/transaction/new') }}">
+            <i class="fa fa-shopping-cart"></i> <span>Purchase / In</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url('/transaction/ext') }}">
+            <i class="fa fa-truck"></i> <span>Issuing / Out</span>
+          </a>
+        </li>
         <li class="treeview">
-          <a href="{{ url('/transaction') }}">
-            <i class="fa fa-folder"></i> <span>Transaction</span>
+          <a href="#">
+            <i class="fa fa-print"></i> <span>Report</span>
              <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
             <ul class="treeview-menu">
-              <li><a href="{{ url('/transaction/new') }}"><i class="fa fa-circle-o"></i> Incoming Transaction</a></li>
-              <li><a href="{{ url('/transaction/ext') }}"><i class="fa fa-circle-o"></i> Outgoing Transaction</a></li>
+              <li><a href="{{ url('/stok') }}"><i class="fa fa-circle-o"></i> Stok</a></li>
+              <li><a href="{{ url('/transaction/ext') }}"><i class="fa fa-circle-o"></i> Purchase</a></li>
+              <li><a href="{{ url('/transaction/ext') }}"><i class="fa fa-circle-o"></i> Issuing</a></li>
           </ul>
         </li>
       </ul>

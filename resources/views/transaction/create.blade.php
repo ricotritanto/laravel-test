@@ -117,16 +117,24 @@
         var name = $("#name").val();
         var qty = $("#qty").val();
 
-        count = count + 1;
-        output = '<tr class="records" id="row_'+count+'">';
-        output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk'+count+'" class="produk" value="'+idpro+'" /></td>';
-        output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';
-        output += '<td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td>';
-        output += '<td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td>';
-       
-        output += '</tr>';
+        
+        if (qty=="") 
+        {
+          alert('QTY tidak boleh kosong')
+        }
+        else
+        {
+          count = count + 1;
+          output = '<tr class="records" id="row_'+count+'">';
+          output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk'+count+'" class="produk" value="'+idpro+'" /></td>';
+          output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';
+          output += '<td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td>';
+          output += '<td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td>';
+         
+          output += '</tr>';
 
-        $("#isinetabel2").append(output);
+          $("#isinetabel2").append(output);
+        }
     });
      
     
