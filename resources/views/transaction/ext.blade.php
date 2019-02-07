@@ -30,6 +30,9 @@
             </div>
         </div>
         <div class="col-md-7">      
+              <div class="card-header">
+                  <h3 class="card-title">Details</h3>
+              </div>
                 <div class="card-body">  
                     <form action="{{ url('/transaction/tambah') }}" method="post">                 
                       @csrf   
@@ -93,7 +96,7 @@
                         alert('Maaf kode Tidak Ada')
                        }else{
                     $("#isinetabel").empty();
-                    $("#isinetabel").append("<tr><td  class='idpro' name='idpro'><label>produk</label><input type='hidden' name='idpro' id='idpro' class='form-control' readonly value='"+jancok.id+"'><input type='text' name='produk' id='name' class='form-control' readonly value='"+jancok.name+"'></td><td><label>Qty </label> <input type='text' class='form-control' name='qty' id='qty'></td></tr>")
+                    $("#isinetabel").append("<tr><td  class='idpro' name='idpro'><label>produk</label><input type='hidden' name='idpro' id='idpro' class='form-control' readonly value='"+jancok.id+"'><input type='text' name='produk' id='name' class='form-control' readonly value='"+jancok.name+"'></td><td class='qtyne'><label>Qty </label> <input type='text' class='form-control' name='qty' id='qty'></td></tr>")
                     // $("#isinetabel").append("<tr><td  class='name'> Produks: <input type='hidden' class='name' id='name' readonly class='form-control' value='"+jancok.name+"'></td><td class='qty'>QTY : <input type='text'id='qty'  class='form-control'></td></tr>")
                   }
                 },error: function (jqXHR, textStatus, errorThrown){
@@ -116,16 +119,24 @@
         var name = $("#name").val();
         var qty = $("#qty").val();
 
-        count = count + 1;
-        output = '<tr class="records" id="row_'+count+'">';
-        output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk'+count+'" class="produk" value="'+idpro+'" /></td>';
-        output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';
-        output += '<td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td>';
-        output += '<td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td>';
-       
-        output += '</tr>';
+        if (qty=="") 
+        {
+          alert('QTY tidak boleh kosong')
+        }
+        else
+        {
+          count = count + 1;
+          output = '<tr class="records" id="row_'+count+'">';
+          output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk'+count+'" class="produk" value="'+idpro+'" /></td>';
+          output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';
+          output += '<td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td>';
+          output += '<td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td>';
+         
+          output += '</tr>';
 
-        $("#isinetabel2").append(output);
+          $("#isinetabel2").append(output);
+        }
+        
     });
      
     
