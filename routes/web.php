@@ -50,3 +50,12 @@ Route::group(['prefix' => 'transaction'], function()
     Route::post('/tambah', 'TransactionController@tambah');
     Route::get('/ext', 'TransactionController@ext');
 });
+
+Route::group(['prefix' => 'stok'], function()
+{
+    Route::get('/', 'StokController@index');
+    Route::get('/new', 'TransactionController@create');
+    Route::post('/cari', 'TransactionController@cari');
+    Route::post('/tambah', 'TransactionController@tambah');
+    Route::get('/ext', 'TransactionController@ext');
+});
