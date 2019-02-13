@@ -34,30 +34,27 @@
                     <th>Code Products</th>
                     <th>Category</th>
                     <th>Products</th>
-                    <th>Masuk</th>
-                    <th>Keluar</th>
+                    <th>Stocks</th>
                 </tr>
                 </thead>
                 <tbody>
                     @php ($no =1)
-                    @forelse($transactions as $abc)     
+                    @forelse($stok as $abc)     
                     <tr>
                         <td>{{ $no++}}</td>
                         <td>{{ $abc->produks->kode }}</td>                                  
                         <td>{{ $abc->produks->kategoris->name }}</td>                                  
                         <td>{{ $abc->produks->name }}</td>       
-                        @forelse ($abc->transaction as $aa)
-                          <td align="center">
-                            @if($aa->transaction_status->id==1)
-                              {{ $abc->qty }}
-                            @endif
-                          </td>
-                            @if($aa->transaction_status->id==2)
-                              <td bgcolor="yellow" align="center">
-                                {{ $abc->qty }}
-                              </td>                              
-                            @endif
-                        @endforeach
+                          @forelse ($abc->transaction as $aa)
+                        <!-- <td>@if($aa->transaction_status->id==1)
+                              {{$in = $abc->qty}}
+                        </td>@elseif($aa->transaction_status->id==2)
+                        <td>
+                              {{($in)- ($abc->qty)}}                       
+                        </td>@endif -->
+                     <td>{{ $abc->qty}}</td>
+                           
+                        @endforeach  
                     </tr>
                     @empty
                     <tr>

@@ -6,7 +6,7 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Transaction Keluar</h3>
+                    <h3 class="card-title">Issuing / Out</h3>
                 </div>
                 <div class="card-body">
                     <!-- MENAMPILKAN ERROR APABILA TERDAPAT FLASH MESSAGE ERROR -->
@@ -38,12 +38,14 @@
                       @csrf   
                       <input type="hidden" name="status" value="2"> 
                       <table class="table table-hover">
-                        <tbody id="isinetabel2">
+                       
                           <tr>
                              <th> Produks</th>
                              <th> Qty</th>
                              <th> Action </th>
-                          </tr>              
+                          </tr>         
+                        <tbody id="isinetabel2"> 
+
                         </tbody>
                              <td><button type="submit" class="btn btn-danger btn-sm">Save</button></td>
                       </table>
@@ -65,7 +67,7 @@
                       <th> Qty</th>
                     </tr>    -->          
                 </tbody>
-                      <td><button id="btn1" class="btn btn-info">Add</button></td>
+                      <td><button id="btn1" class="btn btn-info" >Add</button></td>
                 </table>
             </form> 
           </div>
@@ -109,15 +111,49 @@
 </script>
 
 <script type="text/javascript">
-   
+  var mycart = [];
+        // $(function () {
+        //     if (localStorage.mycart)
+        //     {
+        //         mycart = JSON.parse(localStorage.mycart);
+        //         showCart();
+        //     }
+        // });
+
     $(document).ready(function(){
       $('#btn1').click(function (e) {
         e.preventDefault();
-        // var nomer=1;
-        var count = 0;
+        // var count = 0;
         var idpro = $("#idpro").val();             
         var name = $("#name").val();
         var qty = $("#qty").val();
+        addToCart(idpro,name,qty);
+
+    //     if (qty=="") 
+    //     {
+    //       alert('QTY tidak boleh kosong')
+    //     }
+    //     else
+    //     {
+
+          
+    //       count = count + 1;
+    //       output = '<tr id="row_'+count+'">';
+    //       output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk'+count+'" class="produk" value="'+idpro+'" /></td>';
+    //       output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';          
+    //       output += '<td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td>';
+    //       output += '<td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td>';
+         
+    //       output += '</tr>';
+          
+    //         $("#isinetabel2").append(output);
+      
+    //     }
+    // });
+})
+
+  function addToCart(idpro,name,qty) {
+             //cek data in cart then update qty
 
         if (qty=="") 
         {
@@ -125,26 +161,51 @@
         }
         else
         {
-          count = count + 1;
-          output = '<tr class="records" id="row_'+count+'">';
-          output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk'+count+'" class="produk" value="'+idpro+'" /></td>';
-          output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';
-          output += '<td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td>';
-          output += '<td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td>';
-         
-          output += '</tr>';
+          for (var i in mycart) {
+              if(mycart[i].Id == idpro)
+              {
+                  //jika data available then
+                  mycart[i].Qty = parseInt(mycart[i].Qty)+parseInt(qty);
+                  showCart(); //panggil fungsi showCart
+                 
+                  return;
+                
+              }
+          
+          }
+          // jika tidak ada insert all
 
-          $("#isinetabel2").append(output);
+          var item = { Id: idpro, Nama:name, Qty:qty}; 
+          mycart.push(item);
+          showCart();
         }
-        
-    });
-     
-    
-  
-    
+      }  
 
-})
+  function showCart() {
+
+          // $("#isinetabel2").css("visibility", "visible"); // jika tersedia maka tampilkan 
+          $("#isinetabel2").empty();
+
+          for (var i in mycart) 
+          { //tampilkan data dari local storage mycart, template bisa anda sesuaikan
+            var item = mycart[i];
+            var row = '<tr><td>'+item.Nama+' <input type="hidden" name="produk[]" id="produk" class="produk" value="'+item.Id+'" /></td><td class="ikibakaltakupdate">'+item.Qty+' <input type="hidden" name="qty[]" id="qtyne" value="'+item.Qty+'" /></td><td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td><td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td></tr>';
+         
+          
+      // var row = '<div class="media"><div class="media-left media-top"></div><div class="media-body"><div class="col-lg-12"><div class="col-lg-10"><p>Nama Product <span style="padding-left:0.8em">: </span>'
+      //                   + item.Nama +'</p><p>Jumlah <span style="padding-left:4em">:</span> '+ item.Qty +'</p><p>Harga <span style="padding-left:4.5em">:</span> '+ item.Price +'</p></div><div class="col-lg-2"><br><button class="btn btn-danger btn-circle" onclick="deleteItem(' 
+      //                         + i + ')"><i class="fa fa-trash"  > </i></button></div></div></div></div><hr>' ;
+            $("#isinetabel2").append(row); //append ul dengan id cartbody
+          }
+
+          // untuk total
+         
+        }     
+        })   
 </script>
+
+
+
 <script type="text/javascript">
   function jembut(e){
     console.log(e)

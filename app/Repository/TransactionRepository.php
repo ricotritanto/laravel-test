@@ -65,4 +65,9 @@ class TransactionRepository{
 		print_r(json_encode($data));
 		// return 
 	}
+
+  public function GetStok()
+  {
+    return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('created_at', 'DESC')->get();
+  }
 }
