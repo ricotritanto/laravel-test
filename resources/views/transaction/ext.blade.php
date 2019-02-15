@@ -111,7 +111,7 @@
 </script>
 
 <script type="text/javascript">
-  var mycart = [];
+  var tampung = [];
         // $(function () {
         //     if (localStorage.mycart)
         //     {
@@ -161,11 +161,11 @@
         }
         else
         {
-          for (var i in mycart) {
-              if(mycart[i].Id == idpro)
+          for (var i in tampung) {
+              if(tampung[i].Id == idpro)
               {
                   //jika data available then
-                  mycart[i].Qty = parseInt(mycart[i].Qty)+parseInt(qty);
+                  tampung[i].Qty = parseInt(tampung[i].Qty)+parseInt(qty);
                   showCart(); //panggil fungsi showCart
                  
                   return;
@@ -176,7 +176,7 @@
           // jika tidak ada insert all
 
           var item = { Id: idpro, Nama:name, Qty:qty}; 
-          mycart.push(item);
+          tampung.push(item);
           showCart();
         }
       }  
@@ -186,9 +186,9 @@
           // $("#isinetabel2").css("visibility", "visible"); // jika tersedia maka tampilkan 
           $("#isinetabel2").empty();
 
-          for (var i in mycart) 
+          for (var i in tampung) 
           { //tampilkan data dari local storage mycart, template bisa anda sesuaikan
-            var item = mycart[i];
+            var item = tampung[i];
             var row = '<tr><td>'+item.Nama+' <input type="hidden" name="produk[]" id="produk" class="produk" value="'+item.Id+'" /></td><td class="ikibakaltakupdate">'+item.Qty+' <input type="hidden" name="qty[]" id="qtyne" value="'+item.Qty+'" /></td><td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td><td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td></tr>';
          
           
