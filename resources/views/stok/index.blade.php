@@ -44,15 +44,16 @@
                         <td>{{ $no++}}</td>
                         <td>{{ $abc->produks->kode }}</td>                                  
                         <td>{{ $abc->produks->kategoris->name }}</td>                                  
-                        <td>{{ $abc->produks->name }}</td>       
+                        <td>{{ $abc->produks->name }}</td>
+                        <td>{{ $abc->stok}}</td>       
                           @forelse ($abc->transaction as $aa)
-                        <!-- <td>@if($aa->transaction_status->id==1)
-                              {{$in = $abc->qty}}
+                        <td>@if($aa->transaction_status->id==1)
+                              {{($abc->qty)}}
                         </td>@elseif($aa->transaction_status->id==2)
                         <td>
-                              {{($in)- ($abc->qty)}}                       
-                        </td>@endif -->
-                     <td>{{ $abc->qty}}</td>
+                              {{$abc->qty}}                       
+                        </td>@endif
+                     <!-- <td>{{ $abc->qty}}</td> -->
                            
                         @endforeach  
                     </tr>
