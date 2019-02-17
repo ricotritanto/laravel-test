@@ -65,4 +65,17 @@ class TransactionRepository{
 		print_r(json_encode($data));
 		// return 
 	}
+
+   Public Function GetStokList()
+   {
+      $dataTransactions = transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('created_at', 'DESC')->get();
+
+      $dataArray = [];
+      foreach ($dataTransactions as $key => $value) {
+          $dataArray['produks'] = $value->produks->name;
+          $dataArray['kategoris'] = $value->produks->kategoris->name;
+
+      }
+      return $dataTransactions;
+    }
 }

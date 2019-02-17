@@ -36,11 +36,12 @@
                     <th>Products</th>
                     <th>Masuk</th>
                     <th>Keluar</th>
+                    <th>Stocks</th>
                 </tr>
                 </thead>
                 <tbody>
                     @php ($no =1)
-                    @forelse($transactions as $abc)     
+                    @forelse($stok as $abc)     
                     <tr>
                         <td>{{ $no++}}</td>
                         <td>{{ $abc->produks->kode }}</td>                                  

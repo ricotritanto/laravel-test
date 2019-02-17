@@ -13,8 +13,8 @@ class StokController extends Controller
     Public Function index()
     {
         $transactionRepo=new TransactionRepository;
-        $transactions = $transactionRepo->GetTransactionList();
-        // return json_encode($transactions);
+        $stok = $transactionRepo->GetStokList();
+        // return json_encode($stok);
         return view('stok.index', compact('stok')); // 3
     }
 }

@@ -111,7 +111,9 @@
 <script type="text/javascript">
    
     $(document).ready(function(){
+
       $('#btn1').click(function (e) {
+            console.log($(".qty").val());
         e.preventDefault();
         // var nomer=1;
         var count = 0;
@@ -127,19 +129,20 @@
         {
           count = count + 1;
           output = '<tr class="records" id="row_'+count+'">';
-          output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk'+count+'" class="produk" value="'+idpro+'" /></td>';
-          output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';
+          output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk" class="produk" value="'+idpro+'" /></td>';
+          output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" class="qty" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';
           output += '<td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td>';
           output += '<td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td>';
          
           output += '</tr>';
-
           $("#isinetabel2").append(output);
+          // var qtyTemp = "#qty"+count;
+          
+          // $.each(qty, function( index, value ) {
+          // });
         }
         
     });
-     
-    
   
     
 
