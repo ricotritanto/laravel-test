@@ -30,17 +30,21 @@
             </div>
         </div>
         <div class="col-md-7">      
+          <div class="card-header">
+              <h3 class="card-title">Details</h3>
+          </div>
                 <div class="card-body">  
                     <form action="{{ url('/transaction/tambah') }}" method="post">   
                       <input type="hidden" name="status" value="1">              
                       @csrf   
                       <table class="table table-hover">
-                        <tbody id="isinetabel2">
                           <tr>
                              <th> Produks</th>
                              <th> Qty</th>
                              <th> Action </th>
-                          </tr>              
+                          </tr>  
+                        <tbody id="isinetabel2">             
+                        
                         </tbody>
                              <td><button type="submit" class="btn btn-danger btn-sm">Save</button></td>
                       </table>
@@ -107,42 +111,63 @@
 </script>
 
 <script type="text/javascript">
-   
+  var tampung = [];
     $(document).ready(function(){
       $('#btn1').click(function (e) {
         e.preventDefault();
-        // var nomer=1;
-        var count = 0;
+        // var count = 0;
         var idpro = $("#idpro").val();             
         var name = $("#name").val();
         var qty = $("#qty").val();
+        addToCart(idpro,name,qty);
+})
 
-        
+  function addToCart(idpro,name,qty) {
+             //cek data in cart then update qty
+
         if (qty=="") 
         {
           alert('QTY tidak boleh kosong')
         }
         else
         {
-          count = count + 1;
-          output = '<tr class="records" id="row_'+count+'">';
-          output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk'+count+'" class="produk" value="'+idpro+'" /></td>';
-          output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';
-          output += '<td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td>';
-          output += '<td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td>';
-         
-          output += '</tr>';
-
-          $("#isinetabel2").append(output);
+          for (var i in tampung) {
+              if(tampung[i].Id == idpro)
+              {
+                  //jika data available then
+                  tampung[i].Qty = parseInt(tampung[i].Qty)+parseInt(qty);
+                  showCart(); //panggil fungsi showCart
+                 
+                  return;
+                
+              }
+          
+          }
+          var item = { Id: idpro, Nama:name, Qty:qty}; 
+          tampung.push(item);
+          showCart();
         }
-    });
-     
-    
-  
-    
+      }  
 
-})
+  function showCart() {
+
+          // $("#isinetabel2").css("visibility", "visible"); // jika tersedia maka tampilkan 
+          $("#isinetabel2").empty();
+
+          for (var i in tampung) 
+          { //tampilkan data dari local storage mycart, template bisa anda sesuaikan
+            var item = tampung[i];
+            var row = '<tr><td>'+item.Nama+' <input type="hidden" name="produk[]" id="produk" class="produk" value="'+item.Id+'" /></td><td class="ikibakaltakupdate">'+item.Qty+' <input type="hidden" name="qty[]" id="qtyne" value="'+item.Qty+'" /></td><td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td><td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td></tr>';      
+            $("#isinetabel2").append(row); 
+          }
+
+          // untuk total
+         
+        }     
+        })   
 </script>
+
+
 <script type="text/javascript">
   function jembut(e){
     console.log(e)

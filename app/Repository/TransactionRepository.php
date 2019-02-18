@@ -88,7 +88,7 @@ class TransactionRepository{
             ->join('transaction_statuses' ,'transactions.transaction_status_id','=','transaction_statuses.id')
             ->join('produks', 'transaction_details.id_produk','=','produks.id')
             ->Where('transaction_statuses.id',1)
-            ->Where('produks.kode','A001')
+            // ->Where('produks.kode','A001')
             ->select('id_produk',\DB::raw('sum(qty) as stok'))
             ->groupby('id_produk')
 
