@@ -21,6 +21,10 @@ class Transaction_detail extends Model
     {
         return $this->hasMany(transaction::class, 'id','transaction_id');
     }
+     public function transaction_detail()
+    {
+        return $this->hasMany(transaction_detail::class, 'id','transaction_id');
+    }
 
    
 

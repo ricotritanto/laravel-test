@@ -53,7 +53,7 @@ Route::group(['prefix' => 'transaction'], function()
 
 Route::group(['prefix' => 'stok'], function()
 {
-    Route::get('/', 'stokController@index');
+    Route::get('/', 'StokController@index');
     Route::get('/new', 'TransactionController@create');
     Route::post('/cari', 'TransactionController@cari');
     Route::post('/tambah', 'TransactionController@tambah');
