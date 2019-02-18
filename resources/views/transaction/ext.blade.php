@@ -112,14 +112,6 @@
 
 <script type="text/javascript">
   var tampung = [];
-        // $(function () {
-        //     if (localStorage.mycart)
-        //     {
-        //         mycart = JSON.parse(localStorage.mycart);
-        //         showCart();
-        //     }
-        // });
-
     $(document).ready(function(){
       $('#btn1').click(function (e) {
         e.preventDefault();
@@ -128,28 +120,6 @@
         var name = $("#name").val();
         var qty = $("#qty").val();
         addToCart(idpro,name,qty);
-
-    //     if (qty=="") 
-    //     {
-    //       alert('QTY tidak boleh kosong')
-    //     }
-    //     else
-    //     {
-
-          
-    //       count = count + 1;
-    //       output = '<tr id="row_'+count+'">';
-    //       output += '<td>'+name+' <input type="hidden" name="produk[]" id="produk'+count+'" class="produk" value="'+idpro+'" /></td>';
-    //       output += '<td class="ikibakaltakupdate">'+qty+' <input type="hidden" name="qty[]" id="qty'+count+'" value="'+qty+'" /></td>';          
-    //       output += '<td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td>';
-    //       output += '<td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td>';
-         
-    //       output += '</tr>';
-          
-    //         $("#isinetabel2").append(output);
-      
-    //     }
-    // });
 })
 
   function addToCart(idpro,name,qty) {
@@ -173,8 +143,6 @@
               }
           
           }
-          // jika tidak ada insert all
-
           var item = { Id: idpro, Nama:name, Qty:qty}; 
           tampung.push(item);
           showCart();
@@ -189,13 +157,8 @@
           for (var i in tampung) 
           { //tampilkan data dari local storage mycart, template bisa anda sesuaikan
             var item = tampung[i];
-            var row = '<tr><td>'+item.Nama+' <input type="hidden" name="produk[]" id="produk" class="produk" value="'+item.Id+'" /></td><td class="ikibakaltakupdate">'+item.Qty+' <input type="hidden" name="qty[]" id="qtyne" value="'+item.Qty+'" /></td><td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td><td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td></tr>';
-         
-          
-      // var row = '<div class="media"><div class="media-left media-top"></div><div class="media-body"><div class="col-lg-12"><div class="col-lg-10"><p>Nama Product <span style="padding-left:0.8em">: </span>'
-      //                   + item.Nama +'</p><p>Jumlah <span style="padding-left:4em">:</span> '+ item.Qty +'</p><p>Harga <span style="padding-left:4.5em">:</span> '+ item.Price +'</p></div><div class="col-lg-2"><br><button class="btn btn-danger btn-circle" onclick="deleteItem(' 
-      //                         + i + ')"><i class="fa fa-trash"  > </i></button></div></div></div></div><hr>' ;
-            $("#isinetabel2").append(row); //append ul dengan id cartbody
+            var row = '<tr><td>'+item.Nama+' <input type="hidden" name="produk[]" id="produk" class="produk" value="'+item.Id+'" /></td><td class="ikibakaltakupdate">'+item.Qty+' <input type="hidden" name="qty[]" id="qtyne" value="'+item.Qty+'" /></td><td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td><td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td></tr>';      
+            $("#isinetabel2").append(row); 
           }
 
           // untuk total
