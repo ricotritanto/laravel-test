@@ -46,7 +46,6 @@
                         <td>{{ $abc->produks->kode }}</td>                                  
                         <td>{{ $abc->produks->kategoris->name }}</td>                                  
                         <td>{{ $abc->produks->name }}</td>
-                        <!-- <td>{{ $abc->masuk}}</td>        -->
                           @forelse ($abc->transaction as $aa)
                         <td>@if($aa->transaction_status->id==1)
                               {{$abc->qty}}

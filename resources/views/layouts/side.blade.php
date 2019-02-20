@@ -67,7 +67,6 @@
               <li><a href="{{ url('/stok') }}"><i class="fa fa-circle-o"></i> Stok</a></li>
               <li><a href="{{ url('/stok/purchase') }}"><i class="fa fa-circle-o"></i> Purchase</a></li>
               <li><a href="{{ url('/stok/issuing') }}"><i class="fa fa-circle-o"></i> Issuing</a></li>
-          </ul>
         </li>
       </ul>
     </section>

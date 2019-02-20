@@ -12,7 +12,7 @@ class TransactionRepository{
     Public Function GetTransactionList(){
         // return transaction_detail::with('produks')->with('produks.kategoris')->orderBy('created_at', 'DESC')->get(); 
       // return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction')->with('transaction.transaction_details')->with('transaction_status')->with('transaction.transaction_details')->orderBy('created_at', 'DESC')->get();
-      return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('created_at', 'DESC')->get();
+      return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('id_produk')->get();
     }
 
     Public Function createtransaction($data,$status)
@@ -64,6 +64,7 @@ class TransactionRepository{
 		print_r(json_encode($data));  
 	}
 
+
   public function GetStok()
   {
     return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('id_produk')->get();
@@ -73,20 +74,12 @@ class TransactionRepository{
   {
        //SELECT *,SUM(qty) FROM transaction_details LEFT JOIN transactions ON transaction_details.transaction_id=transactions.id LEFT JOIN transaction_statuses ON transactions.transaction_status_id=transaction_statuses.id WHERE transaction_statuses.id=2
       // SELECT *,SUM(qty) FROM transaction_details LEFT JOIN transactions ON transaction_details.transaction_id=transactions.id LEFT JOIN transaction_statuses ON transactions.transaction_status_id=transaction_statuses.id LEFT JOIN produks ON transaction_details.id_produk=produks.id WHERE transaction_statuses.id=2 AND produks.kode='A001'
-    // $data = transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')
-    //         ->join('transactions','transaction_details.transaction_id','=','transactions.id')
-    //         ->join('transaction_statuses' ,'transactions.transaction_status_id','=','transaction_statuses.id')
-    //         ->join('produks', 'transaction_details.id_produk','=','produks.id')
-    //         ->Where('transaction_statuses.id',2)
-    //         ->Where('produks.kode','A001')
-    //         ->get();
-
-     $data = transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')
+      $data = transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')
             ->join('transactions','transaction_details.transaction_id','=','transactions.id')
             ->join('transaction_statuses' ,'transactions.transaction_status_id','=','transaction_statuses.id')
             ->join('produks', 'transaction_details.id_produk','=','produks.id')
-            ->Where('transaction_statuses.id',1)
-            // ->Where('produks.kode','A001')
+            ->Where('transaction_statuses.id',2)
+            // ->Where('produks.kode','A002')
             ->select('id_produk',\DB::raw('sum(qty) as stok'))
             ->groupby('id_produk')
 
@@ -142,6 +135,24 @@ class TransactionRepository{
             // }
           // print_r(json_encode($data)); 
           return $data;   
+        }
 
+  function purchase()
+  {
+       $data = transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')
+            ->join('transactions','transaction_details.transaction_id','=','transactions.id')
+            ->join('transaction_statuses' ,'transactions.transaction_status_id','=','transaction_statuses.id')
+            ->join('produks', 'transaction_details.id_produk','=','produks.id')
+            ->Where('transaction_statuses.id',1 )
+            // ->select('id_produk',\DB::raw('sum(qty) as stok'))
+            ->select('id_produk')
+            ->groupby('id_produk')
+            // ->orderBy('created_at', 'DESC')
+
+            ->get();        
+
+    // print_r(json_encode($data));   
+   return $data;
+     // return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->Where('transaction_statuses.id',2)->select('id_produk')->groupby('id_produk')->get();
   }
 }

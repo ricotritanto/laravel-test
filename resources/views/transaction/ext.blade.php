@@ -113,7 +113,9 @@
 <script type="text/javascript">
   var tampung = [];
     $(document).ready(function(){
+
       $('#btn1').click(function (e) {
+            console.log($(".qty").val());
         e.preventDefault();
         // var count = 0;
         var idpro = $("#idpro").val();             
@@ -131,12 +133,12 @@
         }
         else
         {
+
           for (var i in tampung) {
               if(tampung[i].Id == idpro)
               {
-                  //jika data available then
                   tampung[i].Qty = parseInt(tampung[i].Qty)+parseInt(qty);
-                  showCart(); //panggil fungsi showCart
+                  showCart();
                  
                   return;
                 

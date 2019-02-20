@@ -24,6 +24,9 @@ class StokController extends Controller
         //              'produks' => $key->produks->name,
         //              'kode' => $key->produks->kode,];
         // }
+        // $stok = $transactionRepo->totstok();
+   //     
+        // return json_encode($transactions);
         return view('stok.index', compact('stok')); // 3
     }
 
@@ -31,7 +34,11 @@ class StokController extends Controller
     {
     	$transactionRepo=new TransactionRepository;
         $stok = $transactionRepo->stokmasuk();
-        return view('stok.purchase', compact('stok')); // 3	
+        return view('stok.purchase', compact('stok')); // 
+        $stok = $transactionRepo->purchase();
+   //     
+        // return json_encode($transactions);
+        return view('stok.purchase', compact('stok')); // 3
     }
 
     Public Function issuing()

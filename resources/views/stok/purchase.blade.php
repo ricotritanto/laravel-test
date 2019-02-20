@@ -13,7 +13,7 @@
         <div class="col-xs-10">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Form Transaction</h3>
+              <h3 class="box-title">report Purchase</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -44,10 +44,11 @@
                     <tr>
                         <td>{{ $no++}}</td>
                         <td>{{ $abc->produks->kode }}</td>                                  
-                        <td>{{ $abc->produks->kategoris->name }}</td>                                  
+                        <td>{{ $abc->produks->kategoris->name }}</td> 
                         <td>{{ $abc->produks->name }}</td>
                         <td>{{ $abc->qty}}</td>       
-                        <td>{{ $abc->create_at}}</td>                                  
+                        <td>{{ $abc->create_at}}</td> 
+                         
                     </tr>
                     @empty
                     <tr>
