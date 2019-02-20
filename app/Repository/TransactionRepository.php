@@ -21,7 +21,6 @@ class TransactionRepository{
 
   		for($i=0;$i<count($data);$i++){
   			$data[$i]['transaction_id']=$transId;
-  			// $data[$i]['transaction_id']=1;
   			$data[$i]['id_produk']=$data[$i]['id'];
   			unset($data[$i]['id']);
   		}
@@ -62,13 +61,12 @@ class TransactionRepository{
 	{
 		$data = transaction::Where('id', 7)->with('detail','detail.produks')->get();
 
-		print_r(json_encode($data));
-		// return 
+		print_r(json_encode($data));  
 	}
 
   public function GetStok()
   {
-    return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('created_at', 'DESC')->get();
+    return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('id_produk')->get();
   }
 
   function totstok()
@@ -96,5 +94,54 @@ class TransactionRepository{
 
     // print_r(json_encode($data));   
    return $data;
+  }
+
+  function stokkeluar()
+  {
+     $data = transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')
+            ->join('transactions','transaction_details.transaction_id','=','transactions.id')
+            ->join('transaction_statuses' ,'transactions.transaction_status_id','=','transaction_statuses.id')
+            ->join('produks', 'transaction_details.id_produk','=','produks.id')
+            ->Where('transaction_statuses.id',2)
+            ->get();
+    return $data;
+  }
+
+  function stokmasuk()
+  {
+    $data = transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')
+            ->join('transactions','transaction_details.transaction_id','=','transactions.id')
+            ->join('transaction_statuses' ,'transactions.transaction_status_id','=','transaction_statuses.id')
+            ->join('produks', 'transaction_details.id_produk','=','produks.id')
+            ->Where('transaction_statuses.id',1)
+            ->get();
+    return $data;
+  }
+
+  public function hitungstok()
+  {
+    // $masuk=$this->stokmasuk();
+    // $keluar=$this->stokkeluar();   
+    $data = transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')
+            ->join('transactions','transaction_details.transaction_id','=','transactions.id')
+            ->join('transaction_statuses' ,'transactions.transaction_status_id','=','transaction_statuses.id')
+            ->join('produks', 'transaction_details.id_produk','=','produks.id')
+            ->Where('transaction_statuses.id',1)
+            // ->('$masuk'-'$keluar')
+            ->set('$masuk-$keluar')
+            ->select('id_produk',\DB::RAW('sum(qty) as masuk'))
+            ->groupby('id_produk')
+            ->get();
+            // foreach ($data as $key ) 
+            // {
+              
+            //   $data = ['kode' =>$key->produks->kode,
+            //            'kategoris'=>$key->produks->kategoris->name,
+            //            'produks' =>$key->produks->name,
+            //            'qty'=> $key->masuk];
+            // }
+          // print_r(json_encode($data)); 
+          return $data;   
+
   }
 }
