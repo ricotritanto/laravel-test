@@ -35,7 +35,7 @@
                     <th>Category</th>
                     <th>Products</th>
                     <th>Purchase</th>
-                    <th>Issuing</th>
+                    <th>Date</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,16 +46,8 @@
                         <td>{{ $abc->produks->kode }}</td>                                  
                         <td>{{ $abc->produks->kategoris->name }}</td>                                  
                         <td>{{ $abc->produks->name }}</td>
-                          @forelse ($abc->transaction as $aa)
-                        <td>@if($aa->transaction_status->id==1)
-                              {{$abc->qty}}
-                              
-                        </td>@endif
-                        @if($aa->transaction_status->id==2)
-                        <td bgcolor="yellow" align="center">
-                              {{$abc->qty}}
-                        </td>@endif
-                        @endforeach  
+                        <td>{{ $abc->qty}}</td>       
+                        <td>{{ $abc->create_at}}</td>                                  
                     </tr>
                     @empty
                     <tr>
@@ -63,15 +55,6 @@
                     </tr>
                     @endforelse
                 </tbody>
-                <!-- <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </tfoot> -->
               </table>
             </div>
             <!-- /.box-body -->

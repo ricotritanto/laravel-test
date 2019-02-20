@@ -13,7 +13,7 @@
         <div class="col-xs-10">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Form Transaction</h3>
+              <h3 class="box-title">report Purchase</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -35,7 +35,7 @@
                     <th>Category</th>
                     <th>Products</th>
                     <th>Purchase</th>
-                    <th>Issuing</th>
+                    <th>Date</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,18 +44,11 @@
                     <tr>
                         <td>{{ $no++}}</td>
                         <td>{{ $abc->produks->kode }}</td>                                  
-                        <td>{{ $abc->produks->kategoris->name }}</td>                                  
+                        <td>{{ $abc->produks->kategoris->name }}</td> 
                         <td>{{ $abc->produks->name }}</td>
-                          @forelse ($abc->transaction as $aa)
-                        <td>@if($aa->transaction_status->id==1)
-                              {{$abc->qty}}
-                              
-                        </td>@endif
-                        @if($aa->transaction_status->id==2)
-                        <td bgcolor="yellow" align="center">
-                              {{$abc->qty}}
-                        </td>@endif
-                        @endforeach  
+                        <td>{{ $abc->qty}}</td>       
+                        <td>{{ $abc->create_at}}</td> 
+                         
                     </tr>
                     @empty
                     <tr>
