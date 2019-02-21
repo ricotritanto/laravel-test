@@ -13,10 +13,6 @@ class Transaction_detail extends Model
     {
     	return $this->hasOne(produks::class, 'id','id_produk');
     }
-    //  public function kategoris()
-    // {
-    // 	return $this->hasOne(Kategori::class, 'id','id_kategori');
-    // }
     public function transaction()
     {
         return $this->hasMany(transaction::class, 'id','transaction_id');
