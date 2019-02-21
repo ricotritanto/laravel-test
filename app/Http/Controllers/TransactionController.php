@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Repository\TransactionRepository;
 use App\Repository\ProdukRepository;
 
-// use App\Repository\KategoriRepository;
-
 class TransactionController extends Controller
 {
     Public Function index()
@@ -15,36 +13,28 @@ class TransactionController extends Controller
         $transactionRepo=new TransactionRepository;
         $transactions = $transactionRepo->GetTransactionList();
         // return json_encode($transactions);
-        return view('transaction.index', compact('transactions')); // 3
+        return view('transaction.index', compact('transactions'));
     }
 
-    Public Function create()
+    Public Function create()  //function untuk input item masuk 
     {
         $produkRepo=new ProdukRepository;
         $produks = $produkRepo->GetProdukList();
-        return view('transaction.create', compact('produks')); // 3
+        return view('transaction.create', compact('produks'));
     }
 
-    Public Function cari(Request $request)
+    Public Function cari(Request $request)  //function cari kode item
     {
         $this->validate($request, [
             'kode' => 'required|string|max:10'
         ]);
         $produkRepo=new ProdukRepository;
         $produks = $produkRepo->GetProdukKode($request);
-        // return json_encode($produks);
         return response()->json($produks);
-        // return response(json_encode($produks))
-        //     ->withHeaders([
-        //         'Content-Type' => 'application/json',
-        //         'X-Header-One' => 'Header Value',
-        //         'X-Header-Two' => 'Header Value',
-        //     ]);
     }
 
-    Public function tambah(Request $request)
-    {
-         
+    Public function tambah(Request $request) //function input item masuk atau keluar
+    {         
         $stress = $request->all();
         $idpro = $stress['produk'];
         $qty = $stress['qty'];
@@ -67,22 +57,11 @@ class TransactionController extends Controller
         return redirect('transaction');
     }
 
-    function viewtransaction()
-    {
-        $transactionRepo=new TransactionRepository;
-        $transactions = $transactionRepo->GetTransactionID();
-        return view('transaction.index', compact('transactions')); // 3
-    }
-
-    function ext()
+    function ext()  //function untuk input item keluar
     {
         
         $produkRepo=new ProdukRepository;
         $produks = $produkRepo->GetProdukList();
         return view('transaction.ext', compact('produks')); 
-    }
-
-    
-
-    
+    }   
 }

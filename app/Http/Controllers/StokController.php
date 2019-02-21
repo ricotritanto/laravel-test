@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Repository\TransactionRepository;
 use App\Repository\ProdukRepository;
 
-// use App\Repository\KategoriRepository;
 
 class StokController extends Controller
 {
@@ -14,34 +13,17 @@ class StokController extends Controller
     {
         $transactionRepo=new TransactionRepository;
         $stok = $transactionRepo->getstok();
-        // $stok = $transactionRepo->totstok();
-        // $stok = $transactionRepo->hitungstok();
-        // return json_encode($stok);
-        // foreach ($stok as $key ) 
-        // {
-        //     $data = ['kode' => $key->produks->kode,
-        //              'kategoris' => $key->produks->kategoris->name,
-        //              'produks' => $key->produks->name,
-        //              'kode' => $key->produks->kode,];
-        // }
-        // $stok = $transactionRepo->totstok();
-   //     
-        // return json_encode($transactions);
         return view('stok.index', compact('stok')); // 3
     }
 
-    Public Function purchase()
+    Public Function purchase() //function menampilkan stok barang masuk
     {
     	$transactionRepo=new TransactionRepository;
         $stok = $transactionRepo->stokmasuk();
         return view('stok.purchase', compact('stok')); // 
-        $stok = $transactionRepo->purchase();
-   //     
-        // return json_encode($transactions);
-        return view('stok.purchase', compact('stok')); // 3
     }
 
-    Public Function issuing()
+    Public Function issuing() //function menampilkan stok barang keluar
     {
     	$transactionRepo=new TransactionRepository;
         $stok = $transactionRepo->stokkeluar();

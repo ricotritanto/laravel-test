@@ -51,21 +51,9 @@
                         <td class="text-center" colspan="6">Tidak ada data</td>
                     </tr>
                     @endforelse
-               
-                <!-- <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </tfoot> -->
               </table>
             </div>
-            <!-- /.box-body -->
           </div>
-          <!-- /.box -->
         </div>
     </div>
 </section>
