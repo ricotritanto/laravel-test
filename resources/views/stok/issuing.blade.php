@@ -2,18 +2,13 @@
 
 @section('content')
 <section class="content-header">
-  <!-- <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Data tables</li>
-  </ol> -->
 </section>
 <section class="content">
       <div class="row">
         <div class="col-xs-10">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Form Transaction</h3>
+              <h3 class="box-title">report Issuing - Out</h3
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -34,7 +29,7 @@
                     <th>Code Products</th>
                     <th>Category</th>
                     <th>Products</th>
-                    <th>Purchase</th>
+                    <th>Issuing</th>
                     <th>Date</th>
                 </tr>
                 </thead>
@@ -57,9 +52,7 @@
                 </tbody>
               </table>
             </div>
-            <!-- /.box-body -->
           </div>
-          <!-- /.box -->
         </div>
     </div>
 </section>

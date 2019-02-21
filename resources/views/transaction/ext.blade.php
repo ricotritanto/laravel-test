@@ -29,6 +29,7 @@
                 </div>
             </div>
         </div>
+        <!-- table input item akan ditampung disini -->
         <div class="col-md-7">      
               <div class="card-header">
                   <h3 class="card-title">Details</h3>
@@ -54,6 +55,7 @@
         </div>
     </div>
 </div>
+<!-- table hasil pencarian -->
 <div class="container">
     <div class="row">
         <div class="col-md-5"> 
@@ -62,10 +64,7 @@
                 <table class="table table-hover">
                 </thead>
                 <tbody id="isinetabel">
-                    <!-- <tr>
-                      <th> Produks</th>
-                      <th> Qty</th>
-                    </tr>    -->          
+
                 </tbody>
                       <td><button id="btn1" class="btn btn-info" >Add</button></td>
                 </table>
@@ -79,8 +78,7 @@
 <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.js') }}"></script>
 <!-- @parent -->
 <script type="text/javascript">
-    // var nomer=1;
-    $(document).ready(function(){
+    $(document).ready(function(){ //function search kode item
         $('#formcari').submit(function (e) {
             e.preventDefault();
             var data = new FormData($(this)[0]);
@@ -92,14 +90,11 @@
                 contentType: false,
                 processData: false,
                 success: function(jancok, textStatus, jqXHR){
-                  // jancok=JSON.parse(jancok)
-                  // console.log(jancok);
                    if (jancok.kode === undefined) {
                         alert('Maaf kode Tidak Ada')
                        }else{
                     $("#isinetabel").empty();
                     $("#isinetabel").append("<tr><td  class='idpro' name='idpro'><label>produk</label><input type='hidden' name='idpro' id='idpro' class='form-control' readonly value='"+jancok.id+"'><input type='text' name='produk' id='name' class='form-control' readonly value='"+jancok.name+"'></td><td class='qtyne'><label>Qty </label> <input type='text' class='form-control' name='qty' id='qty'></td></tr>")
-                    // $("#isinetabel").append("<tr><td  class='name'> Produks: <input type='hidden' class='name' id='name' readonly class='form-control' value='"+jancok.name+"'></td><td class='qty'>QTY : <input type='text'id='qty'  class='form-control'></td></tr>")
                   }
                 },error: function (jqXHR, textStatus, errorThrown){
                     console.log("error: "+errorThrown);
@@ -111,39 +106,32 @@
 </script>
 
 <script type="text/javascript">
-  var tampung = [];
+  var tampung = []; //untuk menampung data sementara, jika saat input data dengan kode item yg sama maka otomatis data akan ditambahkan dengan data yg sebelumnya
     $(document).ready(function(){
 
       $('#btn1').click(function (e) {
             console.log($(".qty").val());
         e.preventDefault();
-        // var count = 0;
         var idpro = $("#idpro").val();             
         var name = $("#name").val();
         var qty = $("#qty").val();
-        addToCart(idpro,name,qty);
+        addToCart(idpro,name,qty);//diarahkan ke function addTocart untuk melakukan pengecekan data
 })
 
   function addToCart(idpro,name,qty) {
-             //cek data in cart then update qty
-
         if (qty=="") 
         {
           alert('QTY tidak boleh kosong')
         }
         else
         {
-
           for (var i in tampung) {
               if(tampung[i].Id == idpro)
               {
                   tampung[i].Qty = parseInt(tampung[i].Qty)+parseInt(qty);
-                  showCart();
-                 
-                  return;
-                
-              }
-          
+                  showCart();  //panggil fungsi showCart                
+                  return;                
+              }          
           }
           var item = { Id: idpro, Nama:name, Qty:qty}; 
           tampung.push(item);
@@ -151,45 +139,35 @@
         }
       }  
 
-  function showCart() {
-
-          // $("#isinetabel2").css("visibility", "visible"); // jika tersedia maka tampilkan 
+  function showCart() //function untuk menampilkan data ke dalam table sementara sebelum di save ke db 
+  {
           $("#isinetabel2").empty();
-
           for (var i in tampung) 
-          { //tampilkan data dari local storage mycart, template bisa anda sesuaikan
+          { //tampilkan data dari var tampung[]
             var item = tampung[i];
-            var row = '<tr><td>'+item.Nama+' <input type="hidden" name="produk[]" id="produk" class="produk" value="'+item.Id+'" /></td><td class="ikibakaltakupdate">'+item.Qty+' <input type="hidden" name="qty[]" id="qtyne" value="'+item.Qty+'" /></td><td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td><td><input type="button" class="sifucker" name="x" value="Delete" onclick="jembut(this)" /></td></tr>';      
+            var row = '<tr><td>'+item.Nama+' <input type="hidden" name="produk[]" id="produk" class="produk" value="'+item.Id+'" /></td><td class="ikibakaltakupdate">'+item.Qty+' <input type="hidden" name="qty[]" id="qtyne" value="'+item.Qty+'" /></td><td><input type="button" class="a" name="xy" value="Update" onclick="upd(this)" /></td><td><input type="button" class="sifucker" name="x" value="Delete" onclick="hapuse(this)" /></td></tr>';      
             $("#isinetabel2").append(row); 
-          }
-
-          // untuk total
-         
-        }     
-        })   
+          }         
+     }     
+   })   
 </script>
 
-
-
 <script type="text/javascript">
-  function jembut(e){
+  function hapuse(e){
     console.log(e)
     $(e).parent().parent().remove()
-    // $('.xy')
-      // var el = e.parentNode.parentNode
-      // e.parentNode.parentNode.parentNode(el)
     }
 </script>
 
 <script type="text/javascript">
-     function upd(e) {
+     function upd(e) { //function update qty
        var nama = prompt("Update QTY", "");  
         $(e).parent().parent().find('.ikibakaltakupdate').empty()
        $(e).parent().parent().find('.ikibakaltakupdate').append(nama+' <input type="hidden" name="qty[]" id="qty" value="'+nama+'" />')
       }
 </script> 
 
-<script type="text/javascript">
+<script type="text/javascript"> //function tambah data (arahkan ke controller)
     $(document).ready(function()
   {
     $('#save').submit(function(e)
@@ -208,8 +186,7 @@
           data:form_data,
           success:function(data)
           {
-           alert(data);
- 
+           alert(data); 
           }
         })
       }else

@@ -13,7 +13,7 @@ class ProdukController extends Controller
     {
     	$produkRepo=new ProdukRepository;
        	$produks = $produkRepo->GetProdukList();
-    	return view('produks.index', compact('produks')); // 3
+    	return view('produks.index', compact('produks'));
     }
 
     Public Function Create()
@@ -23,7 +23,7 @@ class ProdukController extends Controller
     	return view('produks.create', compact('kategoris'));
     }
 
-    Public Function save(Request $request)
+    Public Function save(Request $request) //function save produks
     {
     	$aa = $request->all();
         $name = $aa['name'];
@@ -36,7 +36,7 @@ class ProdukController extends Controller
         else return redirect('/produk/new')->with(['error' => $e->getMessage()]); 
     }
 
-    Public Function Edit($id)
+    Public Function Edit($id) //function menampilkan produks by id untuk update
     {
         $produkRepo=new ProdukRepository;
         $kategoryRepo=new KategoriRepository;
@@ -45,7 +45,7 @@ class ProdukController extends Controller
         return view('produks.edit', compact('produks','kategoris'));
     }
 
-    Public Function Update(Request $request, $id)
+    Public Function Update(Request $request, $id) //function update produks
     {
         $this->validate($request, [
         'kode' => 'required|string|max:10',
@@ -59,7 +59,7 @@ class ProdukController extends Controller
         else return redirect('/produks')->with(['error' => $e->getMessage()]); 
     }
 
-    Public Function Delete($id)
+    Public Function Delete($id) //function delete produks
     {
         $produkRepo=new ProdukRepository;
         $produks = $produkRepo->DeleteProduk($id);

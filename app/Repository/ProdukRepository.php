@@ -9,8 +9,7 @@ use App\Model\transaction_status;
 class ProdukRepository{
 
     Public Function GetProdukList(){
-        return produks::with('kategoris')->orderBy('created_at', 'DESC')->get(); // 2 
-        // $products = Product::with('category')->orderBy('created_at', 'DESC')->paginate(10);
+        return produks::with('kategoris')->orderBy('created_at', 'DESC')->get();
     }
 
     Public Function GetTransactionList(){
@@ -34,32 +33,18 @@ class ProdukRepository{
     } 
 
     Public Function GetProdukId($id)
-    {return produks::findOrFail($id);
-        
+    {
+        return produks::findOrFail($id); 
     }   
   
     Public Function DeleteProduk($id)
     {
         return produks::find($id)->delete(); //QUERY KEDATABASE UNTUK MENGAMBIL DATA BERDASARKAN ID
-        // return kategori::delete();
     }
 
     Public Function GetProdukKode($request)
     {
-        // return produks::Where('kode', $kode)->first();
-         // return produks::Where('kode', $kode)->first();
-        // print_r($status);exit();
-        // $data = transaction_status::Where('id', $status)->first();
-        return produks::Where('kode', $request['kode'])->first();
-        
-
-
-        // $data = produks::where('kode', $request['kode'])
-        // ->join('kategory','kategory.product_id','=','product.id')
-        // orwhere('id',12)->where('nama','jembut')->first();
-
-        // SLECT FROM PRODUCT WHERE kode = qwqw OR id =12 AND nama='jembut'
-        
+        return produks::Where('kode', $request['kode'])->first();      
 
     }
 }
