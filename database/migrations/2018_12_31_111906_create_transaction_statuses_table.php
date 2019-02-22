@@ -16,7 +16,6 @@ class CreateTransactionStatusesTable extends Migration
         Schema::create('transaction_statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('status', ['masuk', 'keluar']);
-            $table->timestamps();
         });
     }
 

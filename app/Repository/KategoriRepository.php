@@ -30,4 +30,5 @@ class KategoriRepository{
     Public Function DeleteCategory($id)
     {
         return kategori::find($id)->delete(); //QUERY KEDATABASE UNTUK MENGAMBIL DATA BERDASARKAN ID
+    }
 }

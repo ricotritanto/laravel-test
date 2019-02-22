@@ -28,7 +28,8 @@
                     <th>No</th>
                     <th>Code Products</th>
                     <th>Category</th>
-                    <th>Products</th>
+                    <th>Products</th>                    
+                    <th>Date</th>
                     <th>In</th>
                     <th>Out</th>
                 </tr>
@@ -40,7 +41,8 @@
                         <td>{{ $no++}}</td>
                         <td>{{ $abc->produks->kode }}</td>                                  
                         <td>{{ $abc->produks->kategoris->name }}</td>                                  
-                        <td>{{ $abc->produks->name }}</td>
+                        <td>{{ $abc->produks->name }}</td>                        
+                        <td>{{ $abc->created_at}}</td>
                           @forelse ($abc->transaction as $aa)
                         <td>@if($aa->transaction_status->id==1)
                               {{$abc->qty}}
