@@ -27,6 +27,7 @@ class StokController extends Controller
     {
     	$transactionRepo=new TransactionRepository;
         $stok = $transactionRepo->stokkeluar();
+        // return json_encode($stok);
         return view('stok.issuing', compact('stok'));
     }
 }

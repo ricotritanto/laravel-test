@@ -21,6 +21,8 @@ class TransactionRepository{
       {
   			$data[$i]['transaction_id']=$transId;
   			$data[$i]['id_produk']=$data[$i]['id'];
+        $data[$i]['created_at'] =date('Y-m-d H:i:s');
+        $data[$i]['updated_at'] = date('Y-m-d H:i:s');
   			unset($data[$i]['id']);
   		}
     	return transaction_detail::insert($data);
@@ -33,6 +35,8 @@ class TransactionRepository{
     		'transaction_status_id'=>$status,
     		'invoice_number'=>$this->generateRandomString(15),
     		'tracking_number'=>'-',
+        'created_at' =>date('Y-m-d H:i:s'),
+        'updated_at' =>date('Y-m-d H:i:s'),
     	];
     	$id = transaction::insertGetId($data);
     	return $id;
@@ -51,7 +55,7 @@ class TransactionRepository{
 
   public function GetStok() //query mengambil semua stok
   {
-    return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('id_produk')->get();
+    return transaction_detail::with('produks')->with('produks.kategoris')->with('transaction.transaction_status')->orderBy('created_at','DESC')->get();
   }
 
   function stokkeluar() // Query total stok keluar per item

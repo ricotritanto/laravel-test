@@ -41,8 +41,11 @@
                         <td>{{ $abc->produks->kode }}</td>                                  
                         <td>{{ $abc->produks->kategoris->name }}</td> 
                         <td>{{ $abc->produks->name }}</td>
-                        <td>{{ $abc->qty}}</td>       
-                        <td>{{ $abc->create_at}}</td> 
+                        <td>{{ $abc->qty}}</td>  
+                         @forelse ($abc->transaction as $aa)     
+                         <td>
+                             {{$aa->created_at}} 
+                        </td>  @endforeach  
                          
                     </tr>
                     @empty
